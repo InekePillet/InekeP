@@ -13,11 +13,11 @@
 %%
 
 root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC/';
-project_label = 'Nifti';
-sub_label = '01';
-ses_label = '01';
-task_label = 'experimental';
-run_label = '1';
+project_label = 'Pilot KUL PO CA 20cat_prf';
+sub_label = '02';
+ses_label = '02';
+task_label = 'prf';
+run_label = '2';
 
 % you can also have acq- and proc-, but these are optional
 bold_json_name = fullfile(root_dir,project_label,[ 'sub-' sub_label ],...
@@ -34,7 +34,7 @@ bold_json_name = fullfile(root_dir,project_label,[ 'sub-' sub_label ],...
 % REQUIRED Name of the task (for resting state use the ?rest? prefix). No two tasks
 % should have the same name. Task label is derived from this field by
 % removing all non alphanumeric ([a-zA-Z0-9]) characters.
-bold_json.TaskName = 'experimental';
+bold_json.TaskName = 'prf';
 
 
 % REQUIRED The time in seconds between the beginning of an acquisition of
@@ -108,18 +108,18 @@ bold_json.AcquisitionDuration = [];
 % runs with different phase encoding directions PhaseEncodingDirection is
 % defined as the direction along which phase is was modulated which may
 % result in visible distortions.
-bold_json.PhaseEncodingDirection = '';
+bold_json.PhaseEncodingDirection = 'j';
 
 %REQUIRED if corresponding fieldmap data is present.
 % The effective sampling interval, specified in seconds, between lines in
 % the phase-encoding direction, defined based on the size of the reconstructed
 % image in the phase direction.
-bold_json.EffectiveEchoSpacing = '';
+bold_json.EffectiveEchoSpacing = [0.000339207679];
 
 %REQUIRED if corresponding fieldmap data is present or the data comes from
 % a multi echo sequence. The echo time (TE) for the acquisition, specified in seconds.
 %Corresponds to DICOM Tag 0018, 0081 "Echo Time"
-bold_json.EchoTime = '0.03';
+bold_json.EchoTime = [0.03];
 
 
 
@@ -139,7 +139,7 @@ bold_json.ManufacturersModelName = 'Philips Medical Systems Achieva dStream 5.4.
 
 %RECOMMENDED Nominal field strength of MR magnet in Tesla. Corresponds to
 % DICOM Tag 0018,0087 "Magnetic Field Strength".
-bold_json.MagneticFieldStrength = '';
+bold_json.MagneticFieldStrength = '3T';
 
 %RECOMMENDED The serial number of the equipment that produced the composite
 % instances. Corresponds to DICOM Tag 0018, 1000 "DeviceSerialNumber".
@@ -190,7 +190,7 @@ bold_json.CoilCombinationMethod = '';
 
 %RECOMMENDED A general description of the pulse sequence used for the scan
 % (i.e. MPRAGE, Gradient Echo EPI, Spin Echo EPI, Multiband gradient echo EPI).
-bold_json.PulseSequenceType = 'Multiband 3 SENSE, single-shot EPI';
+bold_json.PulseSequenceType = 'Multiband 3 SENSE factor 2, single-shot EPI';
 
 %RECOMMENDED Description of the type of data acquired. Corresponds to
 % DICOM Tag 0018, 0020 "Sequence Sequence".
@@ -227,7 +227,7 @@ bold_json.NumberShots = '';
 
 %RECOMMENDED The parallel imaging (e.g, GRAPPA) factor. Use the denominator
 % of the fraction of k-space encoded for each slice.
-bold_json.ParallelReductionFactorInPlane = '';
+bold_json.ParallelReductionFactorInPlane = '2';
 
 %RECOMMENDED The type of parallel imaging used (e.g. GRAPPA, SENSE).
 % Corresponds to DICOM Tag 0018, 9078 "Parallel Acquisition Technique".
@@ -243,7 +243,7 @@ bold_json.PartialFourierDirection = '';
 
 %RECOMMENDED defined as the displacement of the water signal with respect to
 % fat signal in the image. Water-fat shift (WFS) is expressed in number of pixels
-bold_json.WaterFatShift = '';
+bold_json.WaterFatShift = '18.853';
 
 %RECOMMENDED Number of lines in k-space acquired per excitation per image.
 bold_json.EchoTrainLength = '63'; %called EPI factor on Philips/Siemens
@@ -263,7 +263,7 @@ bold_json.InversionTime = '';
 % first, second and third axis of the data in the NIfTI file. When present
 % ,the axis defined by SliceEncodingDirection  needs to be consistent with
 % the slice_dim field in the NIfTI header.
-bold_json.SliceEncodingDirection = '';
+% bold_json.SliceEncodingDirection = '';
 
 %RECOMMENDED Actual dwell time (in seconds) of the receiver per point in the
 % readout direction, including any oversampling.  For Siemens, this corresponds
@@ -274,7 +274,7 @@ bold_json.DwellTime = '';
 % the center of the last echo (aka "FSL definition" - see here and here how
 % to calculate it). This parameter is required if a corresponding multiple
 % phase encoding directions fieldmap (see 8.9.4) data is present.
-bold_json.TotalReadoutTime = '';
+bold_json.TotalReadoutTime = '0.0213700838';
 
 %RECOMMENDED Duration (in seconds) from trigger delivery to scan onset.
 % This delay is commonly caused by adjustments and loading times. This specification

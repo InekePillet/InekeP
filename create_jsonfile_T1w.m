@@ -12,8 +12,8 @@
 %%
 clear all
 root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC/';
-project_label = 'Nifti';
-sub_id = '01';
+project_label = 'Pilot KUL PO CA 20cat_prf';
+sub_id = '02';
 ses_id = '01';
 
 %The OPTIONAL acq-<label> key/value pair corresponds to a custom label 
@@ -107,7 +107,7 @@ anat_json.CoilCombinationMethod=' ';
 
 %RECOMMENDED A general description of the pulse sequence used for the scan 
 % (i.e. MPRAGE, Gradient Echo EPI, Spin Echo EPI, Multiband gradient echo EPI).
-anat_json.PulseSequenceType=' ';
+anat_json.PulseSequenceType='MPRAGE';
 
 %RECOMMENDED Description of the type of data acquired. Corresponds to 
 % DICOM Tag 0018, 0020 "Sequence Sequence".
@@ -144,11 +144,11 @@ anat_json.NumberShots=' ';
 
 %RECOMMENDED The parallel imaging (e.g, GRAPPA) factor. Use the denominator 
 % of the fraction of k-space encoded for each slice.
-anat_json.ParallelReductionFactorInPlane=' ';
+anat_json.ParallelReductionFactorInPlane='3.3';
 
 %RECOMMENDED The type of parallel imaging used (e.g. GRAPPA, SENSE). 
 % Corresponds to DICOM Tag 0018, 9078 "Parallel Acquisition Technique". 
-anat_json.ParallelAcquisitionTechnique=' ';
+anat_json.ParallelAcquisitionTechnique='CS-SENSE';
 
 %RECOMMENDED The fraction of partial Fourier information collected. 
 % Corresponds to DICOM Tag 0018, 9081 "Partial Fourier".
@@ -160,7 +160,7 @@ anat_json.PartialFourierDirection=' ';
 
 %RECOMMENDED defined as the displacement of the water signal with respect to 
 % fat signal in the image. Water-fat shift (WFS) is expressed in number of pixels 
-anat_json.WaterFatShift=' ';
+anat_json.WaterFatShift='2.268';
 
 %RECOMMENDED Number of lines in k-space acquired per excitation per image.
 anat_json.EchoTrainLength=' ';
