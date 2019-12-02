@@ -53,7 +53,7 @@ for run=runs
     t=table(onset,duration,trial_type);
     %writing to a .tsv file
         %name of the .tsv should be?
-        correctname=(['sub-' Subnr '_ses-' ses '_task-' task '_run' num2str(run) '_events']);
+        correctname=(['sub-' Subnr '_ses-' ses '_task-' task '_run-' num2str(run) '_events']);
         %save it in correct BIDS location
         writetable(t,[BIDSDir filesep correctname '.tsv'],'FileType','text','Delimiter','\t')
     clear vectorOnsets vectorDurations trialtype trial_type tofind t onsets onset names i j idx filename durations duration correctname    
