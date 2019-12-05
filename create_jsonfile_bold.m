@@ -11,10 +11,10 @@
 % modified RG 201809
 
 %%
-
+addpath '/Applications/JSONio-master'
 root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC/';
 project_label = 'Pilot KUL PO CA 20cat_prf';
-sub_label = '02';
+sub_label = '01';
 ses_label = '02';
 task_label = 'prf';
 run_label = '2';
@@ -108,13 +108,13 @@ bold_json.AcquisitionDuration = [];
 % runs with different phase encoding directions PhaseEncodingDirection is
 % defined as the direction along which phase is was modulated which may
 % result in visible distortions.
-bold_json.PhaseEncodingDirection = 'j';
+bold_json.PhaseEncodingDirection = 'j'; %anterior to posterior direction, see https://mrtrix.readthedocs.io/en/latest/concepts/pe_scheme.html
 
 %REQUIRED if corresponding fieldmap data is present.
 % The effective sampling interval, specified in seconds, between lines in
 % the phase-encoding direction, defined based on the size of the reconstructed
 % image in the phase direction.
-bold_json.EffectiveEchoSpacing = [0.000339207679];
+bold_json.EffectiveEchoSpacing = [0.000339207679]; %excel file calculates this
 
 %REQUIRED if corresponding fieldmap data is present or the data comes from
 % a multi echo sequence. The echo time (TE) for the acquisition, specified in seconds.
@@ -243,7 +243,7 @@ bold_json.PartialFourierDirection = '';
 
 %RECOMMENDED defined as the displacement of the water signal with respect to
 % fat signal in the image. Water-fat shift (WFS) is expressed in number of pixels
-bold_json.WaterFatShift = '18.853';
+bold_json.WaterFatShift = '18.853'; %actual WFS
 
 %RECOMMENDED Number of lines in k-space acquired per excitation per image.
 bold_json.EchoTrainLength = '63'; %called EPI factor on Philips/Siemens
@@ -263,7 +263,7 @@ bold_json.InversionTime = '';
 % first, second and third axis of the data in the NIfTI file. When present
 % ,the axis defined by SliceEncodingDirection  needs to be consistent with
 % the slice_dim field in the NIfTI header.
-% bold_json.SliceEncodingDirection = '';
+bold_json.SliceEncodingDirection = 'k'; %tricky one but googling told me it should normally be inferior to superior = k, see also https://mrtrix.readthedocs.io/en/latest/concepts/pe_scheme.html 
 
 %RECOMMENDED Actual dwell time (in seconds) of the receiver per point in the
 % readout direction, including any oversampling.  For Siemens, this corresponds
@@ -274,7 +274,7 @@ bold_json.DwellTime = '';
 % the center of the last echo (aka "FSL definition" - see here and here how
 % to calculate it). This parameter is required if a corresponding multiple
 % phase encoding directions fieldmap (see 8.9.4) data is present.
-bold_json.TotalReadoutTime = '0.0213700838';
+bold_json.TotalReadoutTime = '0.02103088';
 
 %RECOMMENDED Duration (in seconds) from trigger delivery to scan onset.
 % This delay is commonly caused by adjustments and loading times. This specification
