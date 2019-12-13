@@ -12,29 +12,31 @@
 
 %%
 addpath '/Applications/JSONio-master'
-root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC/';
-project_label = 'Pilot KUL PO CA 20cat_prf';
+root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC';
+project_label = 'Pilot SC GF 2D3D_EPI_FNSlocalizer';
 sub_label = '01';
-ses_label = '02';
-task_label = 'prf';
-run_label = '2';
+ses_label = '01';
+task_label = 'experimentalFNS';
+acq_label= '3D';
+run_label = '3';
 
 % you can also have acq- and proc-, but these are optional
-bold_json_name = fullfile(root_dir,project_label,[ 'sub-' sub_label ],...
+bold_json_name = fullfile(root_dir,project_label,['sub-' sub_label ],...
     ['ses-' ses_label],...
-    'func',...
+    'fmap',...
     ['sub-' sub_label ...
     '_ses-' ses_label ...
     '_task-' task_label ...
-    '_run-' run_label '_bold.json']);
+    '_acq-' acq_label ...
+    '_run-' run_label '_epi.json']);
 
 
-
+bold_json.IntendedFor='func/sub-01_ses-01_task-experimentalFNS_acq-3D_run-3_bold.nii';
 %% Required fields
 % REQUIRED Name of the task (for resting state use the ?rest? prefix). No two tasks
 % should have the same name. Task label is derived from this field by
 % removing all non alphanumeric ([a-zA-Z0-9]) characters.
-bold_json.TaskName = 'prf';
+bold_json.TaskName = 'experimentalFNS';
 
 
 % REQUIRED The time in seconds between the beginning of an acquisition of
@@ -43,7 +45,7 @@ bold_json.TaskName = 'prf';
 % (when no data has been acquired) in case of sparse acquisition schemes.
 % This value needs to be consistent with the pixdim[4] field
 % (after accounting for units stored in xyzt_units field) in the NIfTI header
-bold_json.RepetitionTime = [1.5]; %niftiinfo('niftifilepath') -> PixelDimensions
+bold_json.RepetitionTime = [0.05]; %niftiinfo('niftifilepath') -> PixelDimensions
 
 %REQUIRED This field is mutually exclusive with RepetitionTime and DelayTime.
 % If defined, this requires acquisition time (TA) be defined via either SliceTiming
@@ -78,7 +80,63 @@ bold_json.DelayTime = [];
 % described using a list of times (in JSON format) referring to the acquisition
 % time for each slice. The list goes through slices along the slice axis in the
 % slice encoding dimension.
-bold_json.SliceTiming = [0,0.125,0.250,0.375,0.500,0.625,0.750,0.875,1,1.125,1.250,1.375,0,0.125,0.250,0.375,0.500,0.625,0.750,0.875,1,1.125,1.250,1.375,0,0.125,0.250,0.375,0.500,0.625,0.750,0.875,1,1.125,1.250,1.375];
+%bold_json.SliceTiming = [0.0,...
+%  0.07894736842105263,...
+%  0.15789473684210525,...
+%  0.23684210526315788,...
+%  0.3157894736842105,...
+%  0.39473684210526316,...
+%  0.47368421052631576,...
+%  0.5526315789473684,...
+%  0.631578947368421,...
+%  0.7105263157894737,...
+%  0.7894736842105263,...
+%  0.8684210526315789,...
+%  0.9473684210526315,...
+%  1.026315789473684,...
+%  1.1052631578947367,...
+%  1.1842105263157894,...
+%  1.263157894736842,...
+%  1.3421052631578947,...
+%  1.4210526315789473,...
+%  0.0,...
+%  0.07894736842105263,...
+%  0.15789473684210525,...
+%  0.23684210526315788,...
+%  0.3157894736842105,...
+%  0.39473684210526316,...
+%  0.47368421052631576,...
+%  0.5526315789473684,...
+%  0.631578947368421,...
+%  0.7105263157894737,...
+%  0.7894736842105263,...
+%  0.8684210526315789,...
+%  0.9473684210526315,...
+%  1.026315789473684,...
+%  1.1052631578947367,...
+%  1.1842105263157894,...
+%  1.263157894736842,...
+%  1.3421052631578947,...
+%  1.4210526315789473,...
+%  0.0,...
+%  0.07894736842105263,...
+%  0.15789473684210525,...
+%  0.23684210526315788,...
+%  0.3157894736842105,...
+%  0.39473684210526316,...
+%  0.47368421052631576,...
+%  0.5526315789473684,...
+%  0.631578947368421,...
+%  0.7105263157894737,...
+%  0.7894736842105263,...
+%  0.8684210526315789,...
+%  0.9473684210526315,...
+%  1.026315789473684,...
+%  1.1052631578947367,...
+%  1.1842105263157894,...
+%  1.263157894736842,...
+%  1.3421052631578947,...
+%  1.4210526315789473];
 %when using MB, to calculate this in msec:
 % MB = 2;
 % number_slices = raw_scanfile.hdr.dime.dim(1,4);
@@ -114,12 +172,12 @@ bold_json.PhaseEncodingDirection = 'j'; %anterior to posterior direction, see ht
 % The effective sampling interval, specified in seconds, between lines in
 % the phase-encoding direction, defined based on the size of the reconstructed
 % image in the phase direction.
-bold_json.EffectiveEchoSpacing = [0.000339207679]; %excel file calculates this
+bold_json.EffectiveEchoSpacing = [0.0008]; %excel file calculates this
 
 %REQUIRED if corresponding fieldmap data is present or the data comes from
 % a multi echo sequence. The echo time (TE) for the acquisition, specified in seconds.
 %Corresponds to DICOM Tag 0018, 0081 "Echo Time"
-bold_json.EchoTime = [0.03];
+bold_json.EchoTime = [0.01689];
 
 
 
@@ -135,11 +193,11 @@ bold_json.Manufacturer = 'Philips';
 %RECOMMENDED Manufacturer`s model name of the equipment that produced the
 % composite instances. Corresponds to DICOM Tag 0008, 1090 "Manufacturers
 % Model Name"
-bold_json.ManufacturersModelName = 'Philips Medical Systems Achieva dStream 5.4.0';
+bold_json.ManufacturersModelName = '';
 
 %RECOMMENDED Nominal field strength of MR magnet in Tesla. Corresponds to
 % DICOM Tag 0018,0087 "Magnetic Field Strength".
-bold_json.MagneticFieldStrength = '3T';
+bold_json.MagneticFieldStrength = '7T';
 
 %RECOMMENDED The serial number of the equipment that produced the composite
 % instances. Corresponds to DICOM Tag 0018, 1000 "DeviceSerialNumber".
@@ -190,7 +248,7 @@ bold_json.CoilCombinationMethod = '';
 
 %RECOMMENDED A general description of the pulse sequence used for the scan
 % (i.e. MPRAGE, Gradient Echo EPI, Spin Echo EPI, Multiband gradient echo EPI).
-bold_json.PulseSequenceType = 'Multiband 3 SENSE factor 2, single-shot EPI';
+bold_json.PulseSequenceType = 'SENSE factor P 2.6 S 3.27, multishot 3D EPI';
 
 %RECOMMENDED Description of the type of data acquired. Corresponds to
 % DICOM Tag 0018, 0020 "Sequence Sequence".
@@ -227,7 +285,7 @@ bold_json.NumberShots = '';
 
 %RECOMMENDED The parallel imaging (e.g, GRAPPA) factor. Use the denominator
 % of the fraction of k-space encoded for each slice.
-bold_json.ParallelReductionFactorInPlane = '2';
+bold_json.ParallelReductionFactorInPlane = '2.6';
 
 %RECOMMENDED The type of parallel imaging used (e.g. GRAPPA, SENSE).
 % Corresponds to DICOM Tag 0018, 9078 "Parallel Acquisition Technique".
@@ -243,10 +301,10 @@ bold_json.PartialFourierDirection = '';
 
 %RECOMMENDED defined as the displacement of the water signal with respect to
 % fat signal in the image. Water-fat shift (WFS) is expressed in number of pixels
-bold_json.WaterFatShift = '18.853'; %actual WFS
+bold_json.WaterFatShift = '32.039'; %actual WFS
 
 %RECOMMENDED Number of lines in k-space acquired per excitation per image.
-bold_json.EchoTrainLength = '63'; %called EPI factor on Philips/Siemens
+bold_json.EchoTrainLength = '43'; %called EPI factor on Philips/Siemens
 
 
 
@@ -263,7 +321,7 @@ bold_json.InversionTime = '';
 % first, second and third axis of the data in the NIfTI file. When present
 % ,the axis defined by SliceEncodingDirection  needs to be consistent with
 % the slice_dim field in the NIfTI header.
-bold_json.SliceEncodingDirection = 'k'; %tricky one but googling told me it should normally be inferior to superior = k, see also https://mrtrix.readthedocs.io/en/latest/concepts/pe_scheme.html 
+bold_json.SliceEncodingDirection = 'i'; %tricky one but googling told me it should normally be inferior to superior = k, see also https://mrtrix.readthedocs.io/en/latest/concepts/pe_scheme.html 
 
 %RECOMMENDED Actual dwell time (in seconds) of the receiver per point in the
 % readout direction, including any oversampling.  For Siemens, this corresponds
@@ -274,7 +332,7 @@ bold_json.DwellTime = '';
 % the center of the last echo (aka "FSL definition" - see here and here how
 % to calculate it). This parameter is required if a corresponding multiple
 % phase encoding directions fieldmap (see 8.9.4) data is present.
-bold_json.TotalReadoutTime = '0.02103088';
+bold_json.TotalReadoutTime = '0.032';
 
 %RECOMMENDED Duration (in seconds) from trigger delivery to scan onset.
 % This delay is commonly caused by adjustments and loading times. This specification
@@ -290,7 +348,7 @@ bold_json.DelayAfterTrigger = [];
 % file should always refer to the beginning of the acquisition of the first
 % volume in the corresponding imaging file - independent of the value of
 % NumberOfVolumesDiscardedByScanner field.
-bold_json.NumberOfVolumesDiscardedByScanner = '2';
+bold_json.NumberOfVolumesDiscardedByScanner = '5';
 
 %RECOMMENDED Number of volumes ("dummy scans") discarded by the user before including
 % the file in the dataset. If possible, including all of the volumes is
@@ -305,14 +363,14 @@ bold_json.NumberOfVolumesDiscardedByUser = '0';
 
 %RECOMMENDED Flip angle for the acquisition, specified in degrees.
 % Corresponds to: DICOM Tag 0018, 1314 "Flip Angle".
-bold_json.FlipAngle = '80';
+bold_json.FlipAngle = '13';
 
 
 
 %% Slice Acceleration metadata field
 
 %RECOMMENDED The multiband factor, for multiband acquisitions.
-bold_json.MultibandAccelerationFactor = '3';
+%bold_json.MultibandAccelerationFactor = '3';
 
 
 

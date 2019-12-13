@@ -19,18 +19,18 @@
 
 %Made by Ineke, november 2019
 
-Sub='S2'; %id of the 
-Subnr='02'; %subject number in your BIDS 
+Sub='S1'; %id of the 
+Subnr='01'; %subject number in your BIDS 
 ses='01'; %session number in your BIDS
-task='experimental'; %name of your task in BIDS
-BIDSDir=['/Volumes/MacOS/PhD/PhD/WP1A - SC/Nifti/sub-' Subnr filesep 'ses-' ses filesep 'func'];
-Dir=['/Volumes/MacOS/PhD/PhD/WP1A/Statistics/' Sub '/Experimental/']; %where are the onsets names duration files for your subject
-runs=[1:16]; %for how many runs do you have such files
+task='experimentalFNS'; %name of your task in BIDS
+BIDSDir=['/Volumes/MacOS/PhD/PhD/WP1A - SC/Pilot SC GF 2D3D_EPI_FNSlocalizer/sub-' Subnr filesep 'ses-' ses filesep 'func'];
+Dir=['/Volumes/MacOS/PhD/PhD/WP1A - SC/Pilot SC GF 2D3D_EPI_FNSlocalizer/sourcedata/beh/sub-01/ses-01/']; %where are the onsets names duration files for your subject
+runs=[1:6]; %for how many runs do you have such files
 
 %for every run
 for run=runs
     %what's the name of the .mat file for this run
-    filename=['Localizer20Categories_' num2str(run) '_.mat'];
+    filename=['LocalizerFNS_' num2str(run) '_.mat'];
     %load in the .mat file
     cd (Dir)
     load([Dir filename]);
