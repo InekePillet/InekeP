@@ -1,4 +1,4 @@
-%HOPLAB: adapting mri experimental data to BIDS
+%HOPLAB: adapting mri experimental data to BIDS %%%
 %step nr 4: 
 %taking an onsets, names. durations .mat file as prepared for SPM12
 %will change it into BIDS .tsv file
