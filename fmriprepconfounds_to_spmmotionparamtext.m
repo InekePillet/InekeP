@@ -10,6 +10,8 @@
 %Note: if you have more than 1 session, run the script as many times as you
 %have sessions with the workdir set to the different session each time, or write
 %yourself a for loop to do this for you ;-) 
+%Note 2: my first 9 subjects are numbered 01-09, if this differs for you
+%change lines 25-35
 
 
 %Ineke Pillet, nov 2020, version 2 (added a loop to run this for not just
