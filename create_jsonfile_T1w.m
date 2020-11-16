@@ -11,8 +11,8 @@
 
 %%
 clear all
-root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC/';
-project_label = 'Pilot KUL PO CA 20cat_prf';
+root_dir = '/Volumes/MacOS/PhD/PhD/WP1A/';
+project_label = 'Pilot-SC-3DEPI-20cat';
 sub_id = '02';
 ses_id = '01';
 
@@ -20,23 +20,22 @@ ses_id = '01';
 % the user MAY use to distinguish a different set of parameters used for 
 % acquiring the same modality.  
 
-acq_id = ''; 
-
-acquisition = 'anat';
+acq_id = 'MPRAGE'; 
 
 %OPTIONAL ce-<label> key/value can be used to distinguish sequences 
 % using different contrast enhanced images
 %OPTIONAL rec-<label> key/value can be used to distinguish different 
 % reconstruction algorithms 
 
-run_id='';
+%run_id='';
 
 anat_json_name = fullfile(root_dir,project_label,['sub-' sub_id],...
-              ['ses-' ses_id],acquisition,...
+              ['ses-' ses_id],...
+              'anat',...
               ['sub-' sub_id ...
-              '_ses-' ses_id ...
-              '_T1w.json']);
-%               '_acq-' acq_id ...
+               '_ses-' ses_id ...
+              '_acq-' acq_id, ...
+              '_T1w.json']);              
 %               '_run-' run_id ...
 
 %%

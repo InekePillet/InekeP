@@ -12,31 +12,32 @@
 
 %%
 addpath '/Applications/JSONio-master'
-root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC';
-project_label = 'Pilot SC GF 2D3D_EPI_FNSlocalizer';
+root_dir = '/Volumes/MacOS/PhD/PhD/WP1A';
+project_label = 'Pilot-SC-3DEPI-20cat';
 sub_label = '01';
 ses_label = '01';
-task_label = 'experimentalFNS';
+task_label = '20catdualtask';
 acq_label= '3D';
-run_label = '3';
+run_label = '1';
 
 % you can also have acq- and proc-, but these are optional
 bold_json_name = fullfile(root_dir,project_label,['sub-' sub_label ],...
     ['ses-' ses_label],...
-    'fmap',...
+    'func',...
     ['sub-' sub_label ...
     '_ses-' ses_label ...
     '_task-' task_label ...
     '_acq-' acq_label ...
-    '_run-' run_label '_epi.json']);
-
-
-bold_json.IntendedFor='func/sub-01_ses-01_task-experimentalFNS_acq-3D_run-3_bold.nii';
+    '_run-' run_label '_bold.json']);
+%you could change func in fmap when you have data for fieldmaps and put
+%those scans there; json files will look the same as the bold ones BUT HAVE
+%TO include e.g.: 
+%bold_json.IntendedFor='func/sub-01_ses-01_task-experimentalFNS_acq-3D_run-1_bold.nii';
 %% Required fields
 % REQUIRED Name of the task (for resting state use the ?rest? prefix). No two tasks
 % should have the same name. Task label is derived from this field by
 % removing all non alphanumeric ([a-zA-Z0-9]) characters.
-bold_json.TaskName = 'experimentalFNS';
+bold_json.TaskName = '20catdualtask';
 
 
 % REQUIRED The time in seconds between the beginning of an acquisition of
@@ -172,12 +173,12 @@ bold_json.PhaseEncodingDirection = 'j'; %anterior to posterior direction, see ht
 % The effective sampling interval, specified in seconds, between lines in
 % the phase-encoding direction, defined based on the size of the reconstructed
 % image in the phase direction.
-bold_json.EffectiveEchoSpacing = [0.0008]; %excel file calculates this
+bold_json.EffectiveEchoSpacing = [0.0008]; %excel file calculates this but only fill out if you're sure, use dcm2niix
 
 %REQUIRED if corresponding fieldmap data is present or the data comes from
 % a multi echo sequence. The echo time (TE) for the acquisition, specified in seconds.
 %Corresponds to DICOM Tag 0018, 0081 "Echo Time"
-bold_json.EchoTime = [0.01689];
+bold_json.EchoTime = [0.01689]; 
 
 
 
@@ -332,7 +333,7 @@ bold_json.DwellTime = '';
 % the center of the last echo (aka "FSL definition" - see here and here how
 % to calculate it). This parameter is required if a corresponding multiple
 % phase encoding directions fieldmap (see 8.9.4) data is present.
-bold_json.TotalReadoutTime = '0.032';
+bold_json.TotalReadoutTime = '0.032'; %excel file calculates this but only fill out if you're sure, use dcm2niix
 
 %RECOMMENDED Duration (in seconds) from trigger delivery to scan onset.
 % This delay is commonly caused by adjustments and loading times. This specification

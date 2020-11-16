@@ -10,9 +10,9 @@
 % modified RG 201809
 
 %%
-clear
-root_dir = '/Volumes/MacOS/PhD/PhD/WP1A - SC/';
-project_label = 'Nifti';
+clear all
+root_dir = '/Volumes/MacOS/PhD/PhD/WP1A/';
+project_label = 'Pilot-SC-3DEPI-20cat';
 json_label = 'dataset_description';
 
 
@@ -27,7 +27,7 @@ dataset_description_json_name = fullfile(root_dir,project_label,...
 
 %%  Required fields:
 
-dd_json.Name = 'Nifti_VISCAT_WP1A'; % name of the dataset
+dd_json.Name = 'Pilot-SC-3DEPI-20cat'; % name of the dataset
 
 dd_json.BIDSVersion = '1.0.2'; % The version of the BIDS standard that was used
 
@@ -39,12 +39,12 @@ dd_json.License = '';% what license is this dataset distributed under? The
 % use of license name abbreviations is suggested for specifying a license.
 % A list of common licenses with suggested abbreviations can be found in appendix III.
 
-dd_json.Authors = {'Ineke Pillet','Hans Op de Beeck'};% List of individuals who contributed to the
+dd_json.Authors = {'Ineke Pillet','Hans Op de Beeck','Serge Dumoulin'};% List of individuals who contributed to the
 % creation/curation of the dataset
 
 dd_json.Acknowledgements = 'Gaelle Leys'; % who should be acknowledge in helping to collect the data
 
-dd_json.HowToAcknowledge = 'Acknowledge Ineke Pillet, Hans Op de Beeck, Gaelle Leys'; % Instructions how researchers using this
+dd_json.HowToAcknowledge = ''; % Instructions how researchers using this
 % dataset should acknowledge the original authors. This field can also be used
 % to define a publication that should be cited in publications that use the
 % dataset.
