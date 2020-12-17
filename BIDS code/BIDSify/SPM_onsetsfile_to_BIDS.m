@@ -25,12 +25,12 @@
 %Fill in line 30-36 for each subject (& session) you want to do
 
 
-%Made by Ineke, november 2019, adapted nov 2020
+%Made by Ineke, november 2019, adapted nov & dec 2020
 %% THE ACTUAL CODE: 
 Subnr='19'; %subject number in your BIDS, eg '01' or '25' 
 ses='01'; %session number in your BIDS
 task='20catdualtask'; %name of your task in BIDS
-acq='3DUpdated'; %if you have the acq ID, if not, you need to tweak the code to handle this
+acq='3DUpdated'; %if you have the acq ID, if not, you need to tweak the code to handle this at line 72
 BIDSDir=['/Volumes/MacOS/PhD/PhD/WP1A/Pilot-SC-3DEPI-20cat/sub-' Subnr filesep 'ses-' ses filesep 'func'];
 Dir=['/Volumes/MacOS/PhD/PhD/WP1A/Pilot-SC-3DEPI-20cat/sourcedata/sub-' Subnr filesep 'ses-' ses filesep 'beh' filesep]; %where are the onsets names duration files for your subject
 runs=[1:8]; %for how many runs do you have such files
@@ -53,6 +53,14 @@ for run=runs
             idx(j)=find(vectorOnsets == tofind(j)); %find indices of where those onsets in numerically sorted vector
         end
         trialtype(idx) = (names(i)); %on these indices, put the name of the associated condition
+        touse=durations{i}; %save the duration of that condition for each of its onsets in the run (1 number if always the same duration for that condition)
+        if length(touse) > 1 %if each onset of the condition has a different duration
+        for j = 1:length(tofind) %for every onset of this condition
+            vectorDurations(idx(j)) = {touse(j)}; %on each of these indices, put the associated duration of that condition on that specific onset time
+        end
+        else %if each onset of the condition has the same duration or if there is only one onset of the condition and thus only one duration
+            vectorDurations(idx)=durations{i}; %on each of these indices, put the duration of that condition (which is the same for every onset of the condition)
+        end
         vectorDurations(idx) = (durations(i)); %on these indices, put the duration of the associated condition
     end
     onset=vectorOnsets';
