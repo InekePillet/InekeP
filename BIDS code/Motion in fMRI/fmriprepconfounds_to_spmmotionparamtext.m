@@ -46,7 +46,7 @@ confoundfilenames=dir('*confound*.tsv');
 for run = 1:numfiles
     confounds=tdfread(confoundfiles{run}); %we read it
     motion_param=[confounds.trans_x,confounds.trans_y,confounds.trans_z,confounds.rot_x,confounds.rot_y,confounds.rot_z]; %we take out the six parameters
-    match='_desc-confounds_regressors.tsv'; %we're going to find this part in the original filename
+    match='_desc-confounds_timeseries.tsv'; %we're going to find this part in the original filename
     newfilename=erase(confoundfiles{run},match); %we now delete that part out 
     finalnewname=['rp_' newfilename '.txt']; %like SPM we put rp_ in front and make it a txt file
     save(finalnewname,'motion_param','-ascii') %we save the param in a txt file in the folder
